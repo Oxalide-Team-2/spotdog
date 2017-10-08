@@ -13,11 +13,6 @@ module Spotdog
       self.new(client).spot_instance_requests
     end
 
-    def self.spot_price_history(client: Aws::EC2::Client.new, instance_types: nil, max_results: nil,
-      product_descriptions: nil, start_time: nil, end_time: nil)
-      self.new(client).spot_price_history(instance_types, max_results, product_descriptions, start_time, end_time)
-    end
-
     def initialize(client)
       @client = client
     end
@@ -35,5 +30,11 @@ module Spotdog
         end_time: end_time,
       ).spot_price_history.map(&:to_h)
     end
+
+    def self.spot_price_history(client: Aws::EC2::Client.new, instance_types: nil, max_results: nil,
+      product_descriptions: nil, start_time: nil, end_time: nil)
+      self.new(client).spot_price_history(instance_types, max_results, product_descriptions, start_time, end_time)
+    end
+
   end
 end
