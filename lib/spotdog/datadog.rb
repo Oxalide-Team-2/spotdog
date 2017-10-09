@@ -45,7 +45,7 @@ module Spotdog
         @prefix,
         spot_price[:instance_type].sub(".", "_"),
         os_type_of(spot_price),
-        spot_price[:availability_zone].gsub("-", "_")
+        spot_price[:availability_zone].tr("-", "_")
       ].join(".")
     end
 
